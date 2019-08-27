@@ -1,0 +1,36 @@
+@import '../../utils/variables';
+
+#people-selector {
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	padding: $spacer__xl;
+	border-radius: $border__radius--l;
+	font-weight: 400;
+	font-size: 24px;
+	text-transform: uppercase;
+	color: $color__body;
+	background: $color__secondary;
+	transition: all 200ms ease-in-out;
+	box-shadow: 0 0 10px 10px rgba(0, 0, 0, .3);
+	
+	&.hide {
+		opacity: 0;
+		
+		.member-checkbox {
+			transform: translateX(-20px);
+		}
+	}
+}
+
+#spin-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 50px;
+	margin-top: $spacer__l;
+	color: $color__secondary;
+	background: $color__main;
+	border-radius: $border__radius--l;
+}

@@ -1,0 +1,61 @@
+@import '../../../utils/variables';
+
+.member-checkbox {
+	display: flex;
+	padding: $spacer__l 0;
+	align-items: center;
+	transition: all 200ms ease-in-out;
+	border-bottom: 1px solid rgba($color__main, .2);
+	cursor: pointer;
+	
+	&:first-child {
+		padding-top: 0;
+	}
+	
+	&:last-child {
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+
+	.checkbox-element {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 20px;
+		width: 20px;
+		margin-right: 20px;
+		border-radius: 5px;
+		border: 2px solid #ddd;
+		background: transparent;
+		
+		&.checked {
+			background: $color__main;
+			border: 2px solid rgba($color__main, .4);
+		}
+		
+		&.checked:before {
+			content: '✔︎';
+			font-size: 16px;
+			color: $color__secondary;
+		}
+	}
+	
+	.checkbox-label {
+		flex-grow: 1;
+		font-size: $font-size__l;
+		font-weight: 600;
+	}
+	
+	.role {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 40px;
+		height: 40px;
+		color: white;
+		border-radius: 50%;
+		font-size: 1.2rem;
+		background: $color__main;
+		text-align: center;
+	}
+}
