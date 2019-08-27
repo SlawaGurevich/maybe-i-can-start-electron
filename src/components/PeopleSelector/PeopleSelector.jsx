@@ -16,7 +16,7 @@ export class PeopleSelector extends Component {
 		this.setState({
 			data: members
 		});
-		console.log(members);
+
 	}
 	
 	render() {
