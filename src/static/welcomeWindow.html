@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        background: #e84848;
+    }
+
+    #logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        transition: 600ms all;
+        transition-timing-function: cubic-bezier(.3,.06,.69,1.37);
+        visibility: hidden;
+        opacity: 0;
+        transform: rotateZ(-720deg);
+    }
+
+    #logo-container.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: rotateZ(0);
+    }
+
+    #logo-container img {
+        width: 60px;
+        height: auto;
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <div id="logo-container">
+        <img src="./logo-w.svg" alt="Maybe I can start">
+    </div>
+</body>
+<script>
+    setTimeout(() => {
+        document.getElementById('logo-container').classList.add('visible');
+    }, 100);
+</script>
+</html>

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
 import SelectorLine from './SelectorLine';
-import members from '../../utils/config.js';
 
 import './PeopleSelector.scss'
 
 export class PeopleSelector extends Component {
+	constructor(props) {
+		super(props)
+		this.state.data = props.data;
+	}
+
 	state = {
 		phase: 0,
 		data: [],
@@ -13,10 +17,6 @@ export class PeopleSelector extends Component {
 	
 	componentDidMount() {
 		console.log("did mount");
-		this.setState({
-			data: members
-		});
-		console.log(members);
 	}
 	
 	render() {
