@@ -6,9 +6,11 @@ import PeopleSelector from '../PeopleSelector';
 
 const FadeInUp = styled.div`animation: 1s ${keyframes `${fadeInUp}`}`;
 
-export const RouletteView = () => {
+export const RouletteView = (props) => {
 	return(
-		<FadeInUp><PeopleSelector /></FadeInUp>
+		<FadeInUp>
+			{ props.data ? <PeopleSelector data={props.data} /> : "No data loaded!" }
+		</FadeInUp>
 	)
 }
 

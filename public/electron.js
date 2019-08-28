@@ -5,14 +5,27 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require('path');
 const isDev = require('electron-is-dev');
 
-let mainWindow;
+let mainWindow, welcomeWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow(
     {
+      width: 1280,
+      height: 720,
+      show: false,
       webPreferences: {
         nodeIntegration: true
       }
+    }
+  );
+
+  welcomeWindow = new BrowserWindow(
+    {
+      width: 440,
+      height: 440,
+      centered: true,
+      frame: false,
+      show: true,
     }
   );
 
@@ -23,7 +36,15 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
     console.log("path", app.getAppPath);
   }
-  mainWindow.maximize();
+
+  welcomeWindow.loadURL(`file://${path.join(__dirname, '../src/static/welcomeWindow.html')}`);
+  // mainWindow.maximize();
+  mainWindow.once('ready-to-show', () => {
+    setTimeout(() => {
+      mainWindow.show();
+      welcomeWindow.hide();
+    }, 300);
+  })
   mainWindow.on('closed', () => mainWindow = null);
 }
 

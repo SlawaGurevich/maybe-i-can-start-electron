@@ -10,7 +10,18 @@ const dbFactory = (fileName) => Datastore.create({
 
 const Databases = {
     options: dbFactory('options.db'),
-    memebers: dbFactory('members.db'),
+    members: dbFactory('members.db'),
 };
 
+const getAllOptions = async () => {
+    let result = await Databases.options.find({}).then( (data) => { return data } );
+    return result;
+}
+
+const getAllMembers = async () => {
+    let result = await Databases.members.find({}).then( (data) => { return data } );
+    return result;
+}
+
 export default Databases;
+export { getAllOptions, getAllMembers };
