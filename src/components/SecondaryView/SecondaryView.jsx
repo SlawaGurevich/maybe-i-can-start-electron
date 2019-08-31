@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './SecondaryScreen.scss';
+import './SecondaryView.scss';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const FadeIn = styled.div`animation: 1s ${keyframes `${fadeIn}`}`;
+const FadeIn = styled.div`display: flex; width:100%; height: 100%; overflow: hidden; animation: 1s ${keyframes `${fadeIn}`}`;
 
 const withSecondaryView = Component => {
 	return class extends Component {
@@ -16,7 +16,6 @@ const withSecondaryView = Component => {
 				<>
 					<div className="secondary-screen">
 						<FadeIn>
-							<Link className="close-to-home" to="/">To home</Link>
 							<div className="container">
 								<div className="row">
 									<Component {...this.props}/>

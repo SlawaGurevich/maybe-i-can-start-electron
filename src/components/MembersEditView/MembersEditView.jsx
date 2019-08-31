@@ -28,7 +28,7 @@ export class MembersEditView extends Component {
     render() {
         return(
             <>
-            <div id="options__members-list" className="col-sm-6">
+            <div id="options__members-list">
                 <h2>Add Members</h2>
                 <div className="member-lines">
                     { this.state.data.map( (member, key) => (
@@ -37,7 +37,7 @@ export class MembersEditView extends Component {
                     <MembersAddForm getMembers={this.getMembers}/>
                 </div>
             </div>
-            <div id="options__role-list" className="col-sm-6">
+            <div id="options__role-list">
                 <h2>Add roles</h2>
             </div>
             </>

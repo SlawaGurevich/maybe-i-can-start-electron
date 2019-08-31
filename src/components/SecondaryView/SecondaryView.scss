@@ -1,0 +1,62 @@
+@import '../../utils/variables';
+
+.secondary-screen {
+	width: 100%;
+	margin: 100px;
+	padding-top: $spacer__l;
+	background: $color__secondary;
+	border-radius: $border__radius--l;
+}
+
+.button--close {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: $spacer__xl;
+	right: $spacer__xl;
+	width: $size__m;
+	height: $size__m;
+	border-radius: 50%;
+	background: $color__secondary;
+}
+
+.row {
+	height: 100%;
+}
+
+.react-tabs {
+	&__tab {
+		padding: $spacer__m 0;
+		margin-right: $spacer__l;
+		font-size: $font-size__l;
+		border-bottom: 1px solid $color__light-gray;
+		cursor: pointer;
+
+		&:first-child {
+			border-top: 1px solid $color__light-gray;
+		}
+	}
+
+	&__tab-panel {
+		display: none;
+		flex-direction: column;
+		width: 100%;
+		overflow: scroll;
+
+		&--selected {
+			display: flex;
+		}
+	}
+
+	&__tab--selected {
+		color: $color__main;
+	}
+
+	&__tab-list {
+		width: 2 * $size__l;
+		margin: 0;
+		padding: 0;
+		list-style: none none inside;
+	}
+}
