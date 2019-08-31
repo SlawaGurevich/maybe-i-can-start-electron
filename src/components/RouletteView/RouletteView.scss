@@ -1,0 +1,25 @@
+@import '../../utils/variables';
+
+.empty-roulette-view {
+    display: flex;
+    flex-direction: column;
+    padding: $spacer__xl;
+    border-radius: $border__radius--l;
+    background: $color__secondary;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, .3);
+}
+
+.members-button {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin-top: $spacer__xl;
+    color: $color__secondary;	
+    text-decoration: none;
+	font-weight: 500;
+    background: $color__main;
+    border-radius: $border__radius--l;
+}

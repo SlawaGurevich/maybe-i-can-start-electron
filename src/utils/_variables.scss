@@ -2,7 +2,9 @@
 
 $color__main: #81ace4; // #74d680
 $color__secondary: #fff;
+$color__light-gray: #eee;
 $color__body: #444;
+$color__error: #F90012;
 
 $grid__unit: 4px;
 
@@ -11,12 +13,17 @@ $spacer__m: 2 * $grid__unit;
 $spacer__l: 3 * $grid__unit;
 $spacer__xl: 6 * $grid__unit;
 
+$size__s: 8 * $grid__unit;
+$size__m: 12 * $grid__unit;
+$size__l: 18 * $grid__unit;
+
 $font-family--main: Amaranth, 'Open Sans';
 
 $font-size__m: 12pt;
 $font-size__l: 1.2rem;
 $font-size__xl: 2rem;
 
-
 $border__radius--l: 10px;
 $border__radius--m: 4px;
+
+$shadow__default: 0 0 10px 10px rgba(0, 0, 0, .3);

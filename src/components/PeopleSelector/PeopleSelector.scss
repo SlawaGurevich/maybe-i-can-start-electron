@@ -12,11 +12,11 @@
 	color: $color__body;
 	background: $color__secondary;
 	transition: all 200ms ease-in-out;
-	box-shadow: 0 0 10px 10px rgba(0, 0, 0, .3);
-	
+	box-shadow: $shadow__default;
+
 	&.hide {
 		opacity: 0;
-		
+
 		.member-checkbox {
 			transform: translateX(-20px);
 		}

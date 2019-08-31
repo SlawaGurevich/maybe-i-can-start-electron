@@ -1,6 +1,6 @@
 import React from 'react';
-import { fadeInUp } from 'react-animations';
 import styled, { keyframes } from 'styled-components';
+import { fadeInUp } from 'react-animations';
 
 import PeopleSelector from '../PeopleSelector';
 

@@ -14,11 +14,11 @@ export class PeopleSelector extends Component {
 		phase: 0,
 		data: [],
 	}
-	
+
 	componentDidMount() {
 		console.log("did mount");
 	}
-	
+
 	render() {
 		return (
 			<div>
@@ -26,7 +26,7 @@ export class PeopleSelector extends Component {
 					{this.state.data.map(
 						member => {
 							return(
-								<SelectorLine key={member.id} uid={member.id} name={member.name} role={member.role} />
+								<SelectorLine key={member._id} uid={member._id} name={member.name} role={member.role} />
 							)
 						}
 					)}
@@ -37,4 +37,4 @@ export class PeopleSelector extends Component {
 	}
 }
 
-export default PeopleSelector
+export default PeopleSelector;

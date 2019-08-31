@@ -5,7 +5,6 @@
 	align-items: center;
 	justify-content: center;
 	flex-grow: 1;
-	background-image: url(../../assets/bg.png);
   	background-size: cover;
 }
 
@@ -21,9 +20,22 @@
 	padding: $spacer__l;
 	box-sizing: border-box;
 	margin-top: $spacer__xl;
-	
+
 	img {
 		height: 100%;
 		width: auto;
 	}
+}
+
+.button--options {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: $spacer__xl;
+	right: $spacer__xl;
+	width: $size__m;
+	height: $size__m;
+	border-radius: 50%;
+	background: $color__secondary;
 }

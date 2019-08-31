@@ -1,0 +1,98 @@
+@import '../../utils/variables';
+
+.member__line {
+	display: flex;
+	flex-grow: 1;
+	padding: $spacer__l;
+
+	&--wrapper {
+		display: flex;
+		border: 1px solid $color__light-gray;
+		border-bottom: none;
+
+		&:first-child {
+			border-radius: $border__radius--l $border__radius--l 0 0;
+		}
+
+		&:last-child {
+			border-bottom: 1px solid $color__light-gray;
+			border-radius: 0 0 $border__radius--l $border__radius--l;
+		}
+	}
+
+	&--inner {
+		display: flex;
+		flex-direction: column;
+		margin-right: $spacer__l;
+
+		input {
+			border: none;
+			border-bottom: 1px solid $color__light-gray;
+
+			&:focus {
+				outline: none;
+				border-bottom: 1px solid;
+			}
+		}
+	}
+
+	&--label {
+		margin-bottom: $spacer__l;
+		font-size: 0.9rem;
+	}
+
+	&--value {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex-grow: 1;
+		font-size: 1.2rem;
+	}
+
+	&--picture {
+		width: $size__m;
+		img {
+			width: auto;
+			height: $size__m;
+			border-radius: 50%;
+		}
+	}
+
+	&--name {
+		flex-grow: 1;
+	}
+
+	&--role {
+		width: 2 * $size__l;
+	}
+
+	&--button {
+		width: $size__l;
+		padding: $spacer__l;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&-delete,
+		&-add {
+			width: $size__m;
+			height: $size__m;
+			color: $color__secondary;
+			border-radius: 50%;
+
+			&[disabled],
+			&:disabled {
+				opacity: .4;
+				cursor: not-allowed;
+			}
+		}
+
+		&-delete {
+			background: $color__error;
+		}
+
+		&-add {
+			background: $color__main;
+		}
+	}
+}
