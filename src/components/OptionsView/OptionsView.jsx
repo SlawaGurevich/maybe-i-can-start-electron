@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import withSecondaryView from '../SecondaryView';
-import MembersEditView from '../MembersEditView';
+import DataEditView from '../DataEditView';
 
 import './OptionsView.scss';
 
@@ -25,7 +25,7 @@ class OptionsView extends Component {
 					</TabList>
 
 					<TabPanel>
-						<MembersEditView />
+						<DataEditView />
 					</TabPanel>
 
 					<TabPanel>
