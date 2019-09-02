@@ -35,16 +35,16 @@ export class DataEditView extends Component {
         return(
             <>
             <div id="options__members-list">
-                <h2>Add Members</h2>
+                <h2>Manage Members</h2>
                 <div className="member-lines">
                     { this.state.members.map( (member, key) => (
-                        <MemberLine key={member._id} name={member.name} role={member.role} roleObj={member.roleObj} deleteMember={this.deleteMember} getData={this.getData}/>
+                        <MemberLine key={member._id} name={member.name} picture={member.picture} role={member.role} roleObj={member.roleObj} deleteMember={this.deleteMember} getData={this.getData}/>
                     ) ) }
                     <MembersAddForm roles={this.state.roles} getData={this.getData}/>
                 </div>
             </div>
             <div id="options__role-list">
-                <h2>Add roles</h2>
+                <h2>Manage roles</h2>
                 <div className="role-lines">
                     { this.state.roles.map( (role, key) => (
                         <RoleLine key={role._id} name={role.name} icon={role.icon} deleteRole={this.deleteRole} getData={this.getData}/>

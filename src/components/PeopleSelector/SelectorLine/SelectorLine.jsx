@@ -5,7 +5,7 @@ import './SelectorLine.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const SelectorLine = ({ uid, name, role, roleObj }) => {
+export const SelectorLine = ( props ) => {
 	const toggleCheckbox = (e) => {
 		console.log(e);
 		if ( e.currentTarget.querySelector('.checkbox-element').classList.contains("checked") ) {
@@ -16,14 +16,14 @@ export const SelectorLine = ({ uid, name, role, roleObj }) => {
 	}
 
 	const getIcon = () => {
-		return usableIcons[roleObj.icon];
+		return usableIcons[props.roleObj.icon];
 	}
 
 	return (
-		<div className={ "member-checkbox member-" + role } onClick={toggleCheckbox} >
-			<div data-id={ uid } data-name={ name } data-role={ role } className="checkbox-element checked" id={"checkbox-" + name}>
+		<div className={ "member-checkbox member-" + props.role } onClick={toggleCheckbox} >
+			<div data-id={ props.uid } data-name={ props.name } data-role={ props.role } data-picture={ props.picture } className="checkbox-element checked" id={"checkbox-" + props.name}>
 			</div>
-			<div className="checkbox-label" id="checkbox-label-Rok">{ name }</div>
+			<div className="checkbox-label" id="checkbox-label-Rok">{ props.name }</div>
 			<div className="role"><FontAwesomeIcon icon={getIcon()} /></div>
 		</div>
 	)
