@@ -10,18 +10,18 @@ const FadeIn = styled.div`animation: 1s ${keyframes `${fadeIn}`}`;
 export class Spinner extends Component {
 
 	spinningInterval;
-	
+
 	// set the inital data. Provided there are more then 2 people in the array.
 	state = {
 		"data":[],
 		"spinning": false,
 		"stopSpinning": false,
 		"spinningOffset": 0,
-		"currentId": null,
-		"nextId": null,
+		"currentId": 0,
+		"nextId": 0,
 		"downToLastPerson": false
 	}
-	
+
 	// get the data from the parent and set it to the current state's data
 	constructor(data) {
 		super()
@@ -31,24 +31,24 @@ export class Spinner extends Component {
 		this.updateState = this.updateState.bind(this);
 		this.spinDatShit = this.spinDatShit.bind(this);
 	}
-	
+
 	updateState(){
 		let currentId, nextId
 		currentId = this.state.currentId < (this.state.data.length - 1) ? this.state.currentId + 1 : 0;
 		nextId = currentId < (this.state.data.length - 1) ? currentId + 1 : 0;
 
-		this.setState({ 
+		this.setState({
 			"currentId": currentId,
 			"nextId": nextId,
 		});
 	}
-	
+
 	startSpin(e) {
 		if( e.keyCode === 32 ) {
 			if( this.state.currentId !== null && this.state.nextId !== null ) {
 				// remove the name from the data, that was selected from the spinning
 				this.state.data.splice(this.state.nextId, 1);
-				console.log('removing data');
+				console.log('removing data', this.state.data);
 
 				if( this.state.data.length > 1 ) {
 					this.updateState();
@@ -77,7 +77,7 @@ export class Spinner extends Component {
 			}
 		}
 	}
-	
+
 	stopSpin(e) {
 		if(e.keyCode === 32 ) {
 			// set the stopSpinning state
@@ -85,7 +85,7 @@ export class Spinner extends Component {
 				"stopSpinning": true,
 				"spinning": false
 			});
-			
+
 			// remove the event listener to stop the spin ...
 			document.removeEventListener("keydown", this.stopSpin, false);
 			// ... and add the event listener to start the spin again
@@ -93,11 +93,11 @@ export class Spinner extends Component {
 			console.log("callback: stopSpin(), ", this.state.spinning);
 		}
 	}
-	
+
 	spinDatShit() {
 		// get all the lines, namely 2, from the spinner
 		let lines = document.getElementsByClassName("name-line")
-		
+
 		// if the offset becomes 60, change the names before resetting it to 100
 		if ( this.state.spinningOffset === 60 && this.state.stopSpinning === false) {
 			this.updateState();
@@ -110,7 +110,7 @@ export class Spinner extends Component {
 		for (let i = 0; i < lines.length; i++) {
 			lines[i].style.transform = `translateY(-${ this.state.spinningOffset }px)`
 		}
-		
+
 		// if somewhere the stop has been triggered, wait for the animation to animate to 0 and then set stopSpinning to false
 		if ( this.state.stopSpinning === true && this.state.spinningOffset === 60 ) {
 			clearInterval(this.spinningInterval);
@@ -120,13 +120,13 @@ export class Spinner extends Component {
 			})
 		}
 	}
-	
+
 	lastPerson () {
 		this.setState({
 			"downToLastPerson": true
 		});
 	}
-	
+
 	componentDidMount(){
 		this.setState({ "spinning": true });
 
@@ -146,12 +146,13 @@ export class Spinner extends Component {
 			spinnerView = <FadeIn><div id="last-person"
 							   className="last-person">
 							   	<div className="first-line">Already Down to last Person...</div>
-							   	<div id="last-spinner-image" style={{ backgroundImage: 'url(' + (this.state.nextId !== null ? process.env.PUBLIC_URL + '/' + this.state.data[0].name + '.png' : '') + '), url(' + process.env.PUBLIC_URL + '/Question.png)' }}>&nbsp;</div>
+							   	<div id="last-spinner-image" style={{ backgroundImage: 'url("file://' + (this.state.data[0].picture ? this.state.data[0].picture : process.env.PUBLIC_URL + '/Question.png') + '")' }}>&nbsp;</div>
 						  		<div id="last-spinner-line">{ this.state.data[0].name }</div>
 						  </div></FadeIn>
 		} else {
 			spinnerView = <div>
-		 		<div id="spinner-image" className={ this.state.nextId !== null && !this.state.spinning ? "visible" : "hidden" } style={{ backgroundImage: 'url(' + (this.state.nextId !== null ? process.env.PUBLIC_URL + '/' + this.state.data[this.state.nextId].name + '.png' : '') + '), url(' + process.env.PUBLIC_URL + '/Question.png)' }}></div>			
+				<button onClick={() => console.log(this.state.data[0].picture)}>click</button>
+		 		<div id="spinner-image" className={ this.state.nextId !== null && !this.state.spinning ? "visible" : "hidden" } style={{ backgroundImage: 'url("file://' + (this.state.data[this.state.nextId].picture ? this.state.data[this.state.nextId].picture : process.env.PUBLIC_URL + '/Question.png') + '")' }}></div>
 				<div id="spinner"
 					 className="spinner">
 						<div id="name-line-first" data-id={ this.state.data[Number.isInteger(this.state.currentId) ? this.state.currentId : 0].id } className="name-line current">{ this.state.data[Number.isInteger(this.state.currentId) ? this.state.currentId : 0].name }</div>

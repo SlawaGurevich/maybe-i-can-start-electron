@@ -119,6 +119,10 @@
 		width: 2 * $size__l;
 	}
 
+	&--select-image {
+		cursor: pointer;
+	}
+
 	&--button {
 		width: $size__l;
 		padding: $spacer__l;

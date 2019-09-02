@@ -24,7 +24,7 @@ const MemberLine = ( props ) => {
 						Picture
 					</div>
 					<div className="data__line--value">
-						{ props.picture ? <img src="" alt=""/> : <img src={dummyImage} alt={props.name}/> }
+						{ props.picture ? <img src={`file://${props.picture}`} alt={props.name}/> : <img src={dummyImage} alt={props.name}/> }
 					</div>
 				</div>
 				<div className="data__line--inner data__line--name">

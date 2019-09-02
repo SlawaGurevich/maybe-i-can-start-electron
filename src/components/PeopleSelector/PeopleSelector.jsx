@@ -26,7 +26,7 @@ export class PeopleSelector extends Component {
 					{this.state.data.map(
 						member => {
 							return(
-								<SelectorLine key={member._id} uid={member._id} name={member.name} role={member.role} roleObj={member.roleObj} />
+								<SelectorLine key={member._id} uid={member._id} picture={member.picture} name={member.name} role={member.role} roleObj={member.roleObj} />
 							)
 						}
 					)}

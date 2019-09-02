@@ -26,7 +26,7 @@ export class MainView extends Component {
 
 			for (var i = 0; i < checkboxes.length; i++) {
 				if( checkboxes[i].classList.contains("checked") ){
-					data.push({ "id":checkboxes[i].dataset.id, "name":checkboxes[i].dataset.name, "role": checkboxes[i].dataset.role })
+					data.push({ "id":checkboxes[i].dataset.id, "name":checkboxes[i].dataset.name, "role": checkboxes[i].dataset.role, "picture": checkboxes[i].dataset.picture })
 				}
 			}
 
