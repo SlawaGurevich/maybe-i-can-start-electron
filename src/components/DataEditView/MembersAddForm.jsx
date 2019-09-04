@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { D_addMember } from '../../utils/dbService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import dummyImage from '../../assets/Question.png'; // remove
@@ -9,6 +8,8 @@ import path from 'path';
 const electron = require('electron');
 const app = electron.remote.app;
 const { dialog } = require('electron').remote;
+
+const dummyImagePath = "file://" + process.env.PUBLIC_URL + "/Question.png";
 
 const INITIAL_STATE = {
 	name: '',
@@ -22,10 +23,13 @@ const INITIAL_STATE = {
 class MembersAddForm extends Component {
 	constructor(props) {
 		super(props);
-
-		this.getData = props.getData;
-		console.log("dummy", dummyImage);
 		this.state = { ...INITIAL_STATE };
+
+		this.selectImage = this.selectImage.bind(this);
+		this.getImagePath = this.getImagePath.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.onChange = this.onChange.bind(this);
+		this.addMember = props.addMember;
 	}
 
 	selectImage = () => {
@@ -41,27 +45,32 @@ class MembersAddForm extends Component {
 	}
 
 	getImagePath = (filePath) => {
-		console.log(filePath);
 		if (filePath[0] !== undefined) {
 			this.setState({
 				oldImagePath: filePath[0],
 				newImagePath: app.getPath('userData') + '/userImages/' + path.basename(filePath[0])
 			});
-			console.log(this.state);
 		}
 	}
 
 	onSubmit = event => {
-		fs.copy(this.state.oldImagePath, this.state.newImagePath)
-			.then( () => {
-				D_addMember( this.state.newImagePath, this.state.name, this.state.role ).then(
-					() => {
-						this.setState({ ...INITIAL_STATE });
-						this.getData();
-					}
-				);
-			} )
-			.catch( err => console.log("There has been an error copying the image!", err) );
+		if (this.state.oldImagePath) {
+			fs.copy(this.state.oldImagePath, this.state.newImagePath)
+				.then( () => {
+					this.addMember( this.state.newImagePath, this.state.name, this.state.role ).then(
+						() => {
+							this.setState({ ...INITIAL_STATE });
+						}
+					);
+				} )
+				.catch( err => console.log("There has been an error copying the image!", err) );
+		} else {
+			this.addMember( this.dummyImagePath, this.state.name, this.state.role ).then(
+				() => {
+					this.setState({ ...INITIAL_STATE });
+				}
+			);
+		}
 
 		event.preventDefault();
 	}
