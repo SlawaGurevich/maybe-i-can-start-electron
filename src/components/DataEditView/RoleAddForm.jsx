@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { D_addRole } from '../../utils/dbService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import usableIcons from '../../utils/usableIcons';
@@ -55,15 +54,18 @@ const RoleLine = (props) => {
 class RoleAddForm extends Component {
 	constructor(props) {
 		super(props);
-
-		this.getData = props.getData;
 		this.state = { ...INITIAL_STATE };
+
+		this.addRole = props.addRole;
+		this.onSubmit = this.onSubmit.bind(this);
+		this.onChange = this.onChange.bind(this);
+		this.showIconMenu = this.showIconMenu.bind(this);
+		this.selectedIcon = this.selectedIcon.bind(this);
 	}
 
 	onSubmit = event => {
-		D_addRole( this.state.name, this.state.icon );
+		this.addRole( this.state.name, this.state.icon );
 		this.setState({ ...INITIAL_STATE });
-		this.getData();
 		event.preventDefault();
 	}
 

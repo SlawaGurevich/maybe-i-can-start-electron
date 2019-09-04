@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { D_getAllMembers, D_deleteMember, D_getAllRoles, D_deleteRole } from '../../utils/dbService';
+import { D_getAllMembers, D_addMember, D_deleteMember, D_getAllRoles, D_addRole, D_deleteRole } from '../../utils/dbService';
 import MembersAddForm from './MembersAddForm';
 import MemberLine from './MemberLine';
 import RoleAddForm, { RoleLine } from './RoleAddForm';
@@ -18,12 +18,21 @@ export class DataEditView extends Component {
         let members = await D_getAllMembers();
         let roles = await D_getAllRoles();
         this.setState({ members, roles });
-        console.log(this.state);
     }
 
     deleteMember = async (name) => {
         await D_deleteMember(name);
         this.getData();
+    }
+
+    addMember = async (imagePath, name, role) => {
+      await D_addMember(imagePath, name, role);
+      this.getData();
+    }
+
+    addRole = async (name, icon) => {
+      await D_addRole(name, icon);
+      this.getData();
     }
 
     deleteRole = async (name) => {
@@ -40,7 +49,7 @@ export class DataEditView extends Component {
                     { this.state.members.map( (member, key) => (
                         <MemberLine key={member._id} name={member.name} picture={member.picture} role={member.role} roleObj={member.roleObj} deleteMember={this.deleteMember} getData={this.getData}/>
                     ) ) }
-                    <MembersAddForm roles={this.state.roles} getData={this.getData}/>
+                    <MembersAddForm roles={this.state.roles} addMember={this.addMember}/>
                 </div>
             </div>
             <div id="options__role-list">
@@ -49,7 +58,7 @@ export class DataEditView extends Component {
                     { this.state.roles.map( (role, key) => (
                         <RoleLine key={role._id} name={role.name} icon={role.icon} deleteRole={this.deleteRole} getData={this.getData}/>
                     ) ) }
-                    <RoleAddForm getData={this.getData}/>
+                    <RoleAddForm addRole={this.addRole}/>
                 </div>
             </div>
             </>
