@@ -1,9 +1,12 @@
 @import '../../utils/variables';
 
+$tabs--width: 144px;
+
 .secondary-screen {
 	width: 100%;
-	margin: 100px;
-	padding-top: $spacer__l;
+	max-width: 900px;
+	margin: 100px auto;
+	padding: $spacer__xl;
 	background: $color__secondary;
 	border-radius: $border__radius--l;
 }
@@ -15,10 +18,6 @@
 	position: absolute;
 	top: $spacer__xl;
 	right: $spacer__xl;
-	width: $size__m;
-	height: $size__m;
-	border-radius: 50%;
-	background: $color__secondary;
 }
 
 .row {
@@ -27,6 +26,7 @@
 
 .react-tabs {
 	&__tab {
+		width: $tabs--width;
 		padding: $spacer__m 0;
 		margin-right: $spacer__l;
 		font-size: $font-size__l;
@@ -39,6 +39,7 @@
 	}
 
 	&__tab-panel {
+		position: relative;
 		display: none;
 		flex-direction: column;
 		width: 100%;

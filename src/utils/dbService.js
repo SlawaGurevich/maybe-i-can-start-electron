@@ -20,7 +20,7 @@ const D_getAllOptions = async () => {
 }
 
 const D_getAllMembers = async () => {
-    let result = await Databases.members.find({}).sort({ createdAt: 1 }).then( (data) => { return data } );
+    let result = await Databases.members.find({}).sort({ role: 1 }).then( (data) => { return data } );
     return result;
 }
 

@@ -3,12 +3,14 @@
 .data__line {
 	display: flex;
 	flex-grow: 1;
-	padding: $spacer__l $spacer__m;
+	align-items: center;
 
 	&--wrapper {
 		display: flex;
+		padding: $spacer__l;
 		border: 1px solid $color__light-gray;
 		border-bottom: none;
+		transition: 300ms background-color ease-in-out;
 
 		&:first-child {
 			border-radius: $border__radius--l $border__radius--l 0 0;
@@ -17,6 +19,10 @@
 		&:last-child {
 			border-bottom: 1px solid $color__light-gray;
 			border-radius: 0 0 $border__radius--l $border__radius--l;
+		}
+
+		&:hover {
+			background-color: $color__light-gray;
 		}
 	}
 
@@ -28,6 +34,7 @@
 		input {
 			border: none;
 			border-bottom: 1px solid $color__light-gray;
+			background: none;
 
 			&:focus {
 				outline: none;
@@ -43,11 +50,12 @@
 
 	&--value {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		align-items: center;
 		flex-grow: 1;
 		font-size: 1.2rem;
 	}
+
+
 
 	&--picture {
 		.member__line--value {
@@ -55,7 +63,7 @@
 		}
 
 		img {
-			width: auto;
+			width: $size__s;
 			height: $size__s;
 			border-radius: 50%;
 		}
@@ -66,8 +74,10 @@
 		align-items: center;
 		justify-content: center;
 		color: $color__secondary;
-		width: $size__m;
-		height: $size__m;
+		height: $size__s;
+		min-height: $size__s;
+		width: $size__s;
+		min-width: $size__s;
 		border-radius: 50%;
 		background: $color__main;
 
@@ -75,6 +85,10 @@
 		path {
 			pointer-events: none;
 		}
+	}
+
+	&--icon-text {
+		margin-left: $spacer__m;
 	}
 
 	&--visible-dropdown {
@@ -124,8 +138,6 @@
 	}
 
 	&--button {
-		width: $size__l;
-		padding: $spacer__l;
 		display: flex;
 		align-items: center;
 		justify-content: center;

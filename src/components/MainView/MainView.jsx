@@ -6,6 +6,9 @@ import { RouletteView, EmptyRouletteView } from '../RouletteView';
 import { D_getAllOptions, D_getAllMembers } from '../../utils/dbService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCogs } from '@fortawesome/free-solid-svg-icons';
+import Icon from '@pluralsight/ps-design-system-icon/react'
+import Button from '@pluralsight/ps-design-system-button/react'
+
 
 import './MainView.scss';
 
@@ -62,7 +65,9 @@ export class MainView extends Component {
 				</div>
 				{ this.state.view === "selection" ? (this.state.data.length ? <RouletteView data={this.state.data} /> : <EmptyRouletteView /> ) : <SpinningView data={ this.data }/> }
 			</div>
-			<Link to="/options" className="button--options"><FontAwesomeIcon icon={faCogs} /></Link>
+			<Link to="/options" className="button--options">
+				<Button class="button--op" icon={<Icon id={Icon.ids.gear} />} title="DeleteMember" type="submit"/>
+			</Link>
 			</>
 		)
 	}

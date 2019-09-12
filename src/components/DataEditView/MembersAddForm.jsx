@@ -5,6 +5,10 @@ import dummyImage from '../../assets/Question.png'; // remove
 import fs from 'fs-extra';
 import path from 'path';
 
+import Icon from '@pluralsight/ps-design-system-icon/react'
+import Button from '@pluralsight/ps-design-system-button/react'
+import usableIcons from '../../utils/usableIcons';
+
 const electron = require('electron');
 const app = electron.remote.app;
 const { dialog } = require('electron').remote;
@@ -99,7 +103,7 @@ class MembersAddForm extends Component {
 							Picture
 						</div>
 						<div className="data__line--value">
-							{ <img className="data__line--select-image" src={ this.state.oldImagePath ? "file://" + this.state.oldImagePath : dummyImage } alt="Dummy" /> }
+							{ this.state.oldImagePath ? <img className="data__line--select-image" alt={this.state.name} src={"file://" + this.state.oldImagePath} /> : <div className="data__line--icon"><FontAwesomeIcon icon={faPlus} /></div> }
 						</div>
 					</div>
 					<div className="data__line--inner data__line--name">
@@ -137,13 +141,54 @@ class MembersAddForm extends Component {
 					</div>
 				</div>
 				<div className="data__line--button">
-					<button className="data__line--button-add" disabled={isInvalid} type="submit">
-						<FontAwesomeIcon icon={faPlus} />
-					</button>
+					<Button icon={<Icon id={Icon.ids.plus} />} disabled={isInvalid} title="DeleteMember" type="submit"/>
 				</div>
 			</form>
 		);
 	}
 }
 
+const MemberLine = ( props ) => {
+	function deleteMember() {
+		props.deleteMember(props.name);
+		props.getData();
+	}
+
+	const getIcon = () => {
+		return usableIcons[props.roleObj.icon];
+	}
+
+	return(
+		<div className="data__line--wrapper">
+			<div className="data__line">
+				<div className="data__line--inner data__line--picture">
+					<div className="data__line--value">
+						{ props.picture ? <img src={`file://${props.picture}`} alt={props.name}/> : <img src={dummyImage} alt={props.name}/> }
+					</div>
+				</div>
+				<div className="data__line--inner data__line--name">
+					<div className="data__line--value">
+						{props.name}
+					</div>
+				</div>
+				<div className="data__line--inner data__line--role">
+					<div className="data__line--value">
+						<div className="data__line--icon">
+							<FontAwesomeIcon icon={getIcon()} />
+						</div>
+						<div className="data__line--icon-text">
+							{props.role}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="data__line--button">
+				<Button icon={<Icon id={Icon.ids.trash} />} title="DeleteMember" onClick={deleteMember}/>
+				{/* <button className="data__line--button-delete" ><FontAwesomeIcon icon={faTrash} /></button> */}
+			</div>
+		</div>
+	);
+}
+
 export default MembersAddForm;
+export { MemberLine };

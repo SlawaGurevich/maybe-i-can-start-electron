@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { D_getAllMembers, D_addMember, D_deleteMember, D_getAllRoles, D_addRole, D_deleteRole } from '../../utils/dbService';
-import MembersAddForm from './MembersAddForm';
-import MemberLine from './MemberLine';
+import MembersAddForm, { MemberLine } from './MembersAddForm';
 import RoleAddForm, { RoleLine } from './RoleAddForm';
 
 export class DataEditView extends Component {

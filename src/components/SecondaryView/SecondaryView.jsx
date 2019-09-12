@@ -7,6 +7,9 @@ import { fadeIn } from 'react-animations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import Icon from '@pluralsight/ps-design-system-icon/react'
+import Button from '@pluralsight/ps-design-system-button/react'
+
 const FadeIn = styled.div`display: flex; width:100%; height: 100%; overflow: hidden; animation: 1s ${keyframes `${fadeIn}`}`;
 
 const withSecondaryView = Component => {
@@ -16,14 +19,12 @@ const withSecondaryView = Component => {
 				<>
 					<div className="secondary-screen">
 						<FadeIn>
-							<div className="container">
-								<div className="row">
-									<Component {...this.props}/>
-								</div>
-							</div>
+							<Component {...this.props}/>
 						</FadeIn>
 					</div>
-					<Link to="/" className="button--close"><FontAwesomeIcon icon={faTimes} /></Link>
+					<Link to="/" className="button--close">
+						<Button icon={<Icon id={Icon.ids.close} />} title="CloseOptions"/>
+					</Link>
 				</>
 			)
 		}
