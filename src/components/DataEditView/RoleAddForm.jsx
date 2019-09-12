@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+import Icon from '@pluralsight/ps-design-system-icon/react'
+import Button from '@pluralsight/ps-design-system-button/react'
+
 import usableIcons from '../../utils/usableIcons';
 
 import './DataEditView.scss';
@@ -26,26 +30,20 @@ const RoleLine = (props) => {
 		<div className="data__line--wrapper">
 			<div className="data__line">
 				<div className="data__line--inner">
-					<div className="data__line--label">
-						Icon
-					</div>
 					<div className="data__line--value data__line--icon">
 						<FontAwesomeIcon icon={getIcon()} />
 					</div>
 				</div>
 				<div className="data__line">
 					<div className="data__line--inner data__line--name">
-						<div className="data__line--label">
-							Name
-						</div>
 						<div className="data__line--value">
 							{props.name}
 						</div>
 					</div>
 				</div>
-				<div className="data__line--button">
-					<button className="data__line--button-delete" onClick={deleteRole}><FontAwesomeIcon icon={faTrash} /></button>
-				</div>
+			</div>
+			<div className="data__line--button">
+				<Button icon={<Icon id={Icon.ids.trash} />} title="DeleteRole" onClick={deleteRole}/>
 			</div>
 		</div>
 	)
@@ -142,9 +140,7 @@ class RoleAddForm extends Component {
 						</div>
 					</div>
 					<div className="data__line--button">
-						<button className="data__line--button-add" disabled={isInvalid} type="submit">
-							<FontAwesomeIcon icon={faPlus} />
-						</button>
+						<Button icon={<Icon id={Icon.ids.plus} />} disabled={isInvalid} title="DeleteRole" type="submit"/>
 					</div>
 				</div>
 			</form>

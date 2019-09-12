@@ -18,7 +18,7 @@ class OptionsView extends Component {
 	render() {
 		return(
 			<>
-				<Tabs className="options__tabbed-views col-sm-12">
+				<Tabs className="options__tabbed-views">
 					<TabList>
 						<Tab>Data</Tab>
 						<Tab>Options</Tab>
