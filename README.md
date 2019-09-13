@@ -1,5 +1,5 @@
 # Maybe I can start!
-##Who, me? Yes, **you**!
+## Who, me? Yes, **you**!
 
 It is early morning, the sun is rising, and everybody is gathered around a table in the meeting room. And then it happens. The daily begins. But who will go first? Nobody knows. Silence. And then, from a far corner in the room, you hear a voie of a desperate developer. "Maybe... I can start?"
 
