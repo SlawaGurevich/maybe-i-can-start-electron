@@ -14,42 +14,38 @@ const Databases = {
     roles: dbFactory('roles.db'),
 };
 
-const D_getAllOptions = async () => {
-    let result = await Databases.options.find({}).then( (data) => { return data } );
-    return result;
-}
-
 const D_getAllMembers = async () => {
-    let result = await Databases.members.find({}).sort({ role: 1 }).then( (data) => { return data } );
-    return result;
-}
-
-const D_getAllRoles = async () => {
-    let result = await Databases.roles.find({}).sort({ createdAt: 1 }).then( (data) => { return data } );
+    let result = await Databases.members.find({}).sort({ role: 1 });
     return result;
 }
 
 const D_addMember = async (picture, name, role) => {
-    await Databases.roles.findOne({name: role}).then(
-      (roleObj) => { Databases.members.insert({picture, name, role, roleObj}) }
-    );
-    // await ;
+    await Databases.members.insert({picture, name, role});
 }
 
 const D_deleteMember = async (name) => {
     await Databases.members.remove({name: name});
 }
 
+const D_getAllRoles = async () => {
+    return await Databases.roles.find({}).sort({ createdAt: 1 });
+}
+
+const D_getRole = async (id) => {
+    return await Databases.roles.findOne({_id: id});
+}
+
 const D_addRole = async (name, icon) => {
     await Databases.roles.insert({name, icon});
 }
 
-const D_getRole = async (name) => {
-    return await Databases.roles.findOne({name});
-}
-
 const D_deleteRole = async (name) => {
     await Databases.roles.remove({name: name});
+}
+
+const D_getAllOptions = async () => {
+    let result = await Databases.options.find({});
+    return result;
 }
 
 export default Databases;

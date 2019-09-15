@@ -48,7 +48,6 @@ export class Spinner extends Component {
 			if( this.state.currentId !== null && this.state.nextId !== null ) {
 				// remove the name from the data, that was selected from the spinning
 				this.state.data.splice(this.state.nextId, 1);
-				console.log('removing data', this.state.data);
 
 				if( this.state.data.length > 1 ) {
 					this.updateState();
@@ -151,7 +150,6 @@ export class Spinner extends Component {
 						  </div></FadeIn>
 		} else {
 			spinnerView = <div>
-				<button onClick={() => console.log(this.state.data[0].picture)}>click</button>
 		 		<div id="spinner-image" className={ this.state.nextId !== null && !this.state.spinning ? "visible" : "hidden" } style={{ backgroundImage: 'url("file://' + (this.state.data[this.state.nextId].picture ? this.state.data[this.state.nextId].picture : process.env.PUBLIC_URL + '/Question.png') + '")' }}></div>
 				<div id="spinner"
 					 className="spinner">
