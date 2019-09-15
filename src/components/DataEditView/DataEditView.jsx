@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import { D_getAllMembers, D_addMember, D_deleteMember, D_getAllRoles, D_addRole, D_deleteRole } from '../../utils/dbService';
+import { D_getAllMembers, D_addMember, D_deleteMember, D_getAllRoles, D_addRole, D_deleteRole, D_getRole } from '../../utils/dbService';
 import MembersAddForm, { MemberLine } from './MembersAddForm';
 import RoleAddForm, { RoleLine } from './RoleAddForm';
 
 export class DataEditView extends Component {
+    componentDidMount() {
+        this.getData();
+        console.log("mounted");
+    }
+
     constructor(props) {
         super(props);
         this.state = {
-            members: [],
+            members: [{name: "asd", role: "asdsd"}],
             roles: [],
         }
-        this.getData();
     }
 
     getData = async () => {
         let members = await D_getAllMembers();
         let roles = await D_getAllRoles();
-        this.setState({ members, roles });
+        // console.log(members, roles);
+        this.setState({ members });
+        this.setState({ roles });
     }
 
     deleteMember = async (name) => {
@@ -39,6 +45,10 @@ export class DataEditView extends Component {
         this.getData();
     }
 
+    getRole = async (id) => {
+        return await D_getRole(id);
+    }
+
     render() {
         return(
             <>
@@ -46,7 +56,7 @@ export class DataEditView extends Component {
                 <h2>Manage Members</h2>
                 <div className="member-lines">
                     { this.state.members.map( (member, key) => (
-                        <MemberLine key={member._id} name={member.name} picture={member.picture} role={member.role} roleObj={member.roleObj} deleteMember={this.deleteMember} getData={this.getData}/>
+                        <MemberLine key={key} name={member.name} picture={member.picture} deleteMember={this.deleteMember} role={member.role} getData={this.getData} getRole={this.getRole}/>
                     ) ) }
                     <MembersAddForm roles={this.state.roles} addMember={this.addMember}/>
                 </div>

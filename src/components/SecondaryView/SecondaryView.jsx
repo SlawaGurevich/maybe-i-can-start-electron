@@ -4,9 +4,6 @@ import './SecondaryView.scss';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
 import Icon from '@pluralsight/ps-design-system-icon/react'
 import Button from '@pluralsight/ps-design-system-button/react'
 

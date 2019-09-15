@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import dummyImage from '../../assets/Question.png'; // remove
@@ -12,8 +12,6 @@ import usableIcons from '../../utils/usableIcons';
 const electron = require('electron');
 const app = electron.remote.app;
 const { dialog } = require('electron').remote;
-
-const dummyImagePath = "file://" + process.env.PUBLIC_URL + "/Question.png";
 
 const INITIAL_STATE = {
 	name: '',
@@ -86,7 +84,6 @@ class MembersAddForm extends Component {
 	render() {
 		const {
 			name,
-			picture,
 			role
 		} = this.state;
 
@@ -134,7 +131,7 @@ class MembersAddForm extends Component {
 							>
 								<option value="norole" defaultValue>Please select...</option>
 								{ this.props.roles.map( (role, key) => (
-									<option key={key} value={role.name}>{role.name}</option>
+									<option key={key} value={role._id}>{role.name}</option>
 								) ) }
 							</select>
 						</div>
@@ -149,14 +146,26 @@ class MembersAddForm extends Component {
 }
 
 const MemberLine = ( props ) => {
+	const [roleIcon, setRoleIcon] = useState('');
+	const [roleName, setRoleName] = useState('');
+
 	function deleteMember() {
 		props.deleteMember(props.name);
 		props.getData();
 	}
 
-	const getIcon = () => {
-		return usableIcons[props.roleObj.icon];
-	}
+	useEffect(() => {
+		const getRole = async (id) => {
+			const role = await props.getRole(id);
+			if( role ) {
+				setRoleIcon( usableIcons[parseInt(role.icon)] );
+				setRoleName( role.name );
+			}
+		}
+
+		getRole(props.role);
+	}, [props]);
+
 
 	return(
 		<div className="data__line--wrapper">
@@ -174,10 +183,10 @@ const MemberLine = ( props ) => {
 				<div className="data__line--inner data__line--role">
 					<div className="data__line--value">
 						<div className="data__line--icon">
-							<FontAwesomeIcon icon={getIcon()} />
+							{ roleIcon ? <FontAwesomeIcon icon={roleIcon} /> : '' }
 						</div>
 						<div className="data__line--icon-text">
-							{props.role}
+							{roleName}
 						</div>
 					</div>
 				</div>

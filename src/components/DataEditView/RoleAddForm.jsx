@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import Icon from '@pluralsight/ps-design-system-icon/react'
 import Button from '@pluralsight/ps-design-system-button/react'
@@ -73,7 +72,6 @@ class RoleAddForm extends Component {
 
 	showIconMenu = (e) => {
 		document.getElementById('visible-dropdown').classList.toggle('visible');
-		console.log(e.target);
 	}
 
 	selectedIcon = (e) => {
