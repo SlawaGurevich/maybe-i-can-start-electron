@@ -1,6 +1,5 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
-import { Link } from 'react-router-dom';
 import Button from '@pluralsight/ps-design-system-button/react'
 
 import './SelectorView.scss';

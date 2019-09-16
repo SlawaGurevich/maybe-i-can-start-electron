@@ -58,6 +58,13 @@
 
 
 	&--picture {
+		&-container {
+			width: $size__s;
+			height: $size__s;
+			background-size: cover;
+			border-radius: 50%;
+		}
+
 		.member__line--value {
 			width: $size__s;
 		}
