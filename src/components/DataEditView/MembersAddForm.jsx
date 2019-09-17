@@ -151,6 +151,11 @@ const MemberLine = ( props ) => {
 
 	function deleteMember() {
 		props.deleteMember(props.name);
+		try {
+			fs.unlink(props.picture);
+		} catch (e) {
+			console.log("Couldn't delete picture.", e);
+		}
 		props.getData();
 	}
 
@@ -172,7 +177,7 @@ const MemberLine = ( props ) => {
 			<div className="data__line">
 				<div className="data__line--inner data__line--picture">
 					<div className="data__line--value">
-						{ props.picture ? <img src={`file://${props.picture}`} alt={props.name}/> : <img src={dummyImage} alt={props.name}/> }
+						{ props.picture ? <div className="data__line--picture-container" style={{backgroundImage:`url('file:${props.picture}')`}}></div> : <img src={dummyImage} alt={props.name}/> }
 					</div>
 				</div>
 				<div className="data__line--inner data__line--name">
