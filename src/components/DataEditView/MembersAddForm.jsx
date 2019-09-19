@@ -99,8 +99,8 @@ class MembersAddForm extends Component {
 						<div className="data__line--label">
 							Picture
 						</div>
-						<div className="data__line--value">
-							{ this.state.oldImagePath ? <img className="data__line--select-image" alt={this.state.name} src={"file://" + this.state.oldImagePath} /> : <div className="data__line--icon"><FontAwesomeIcon icon={faPlus} /></div> }
+						<div className="data__line--value data__line--select-image">
+							{ this.state.oldImagePath ? <div className="data__line--picture-container" style={{backgroundImage: `url('file:${this.state.oldImagePath}')`}} ></div> : <div className="data__line--icon"><FontAwesomeIcon icon={faPlus} /></div> }
 						</div>
 					</div>
 					<div className="data__line--inner data__line--name">
@@ -151,10 +151,12 @@ const MemberLine = ( props ) => {
 
 	function deleteMember() {
 		props.deleteMember(props.name);
-		try {
-			fs.unlink(props.picture);
-		} catch (e) {
-			console.log("Couldn't delete picture.", e);
+		if( fs.existsSync(props.picture) ) {
+			try {
+				fs.unlink(props.picture);
+			} catch (e) {
+				console.log("Couldn't delete picture.", e);
+			}
 		}
 		props.getData();
 	}
