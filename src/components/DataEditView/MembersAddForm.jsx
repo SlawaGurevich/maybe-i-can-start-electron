@@ -1,12 +1,12 @@
 import React, { Component, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import dummyImage from '../../assets/Question.png'; // remove
 import fs from 'fs-extra';
 import path from 'path';
 
 import Icon from '@pluralsight/ps-design-system-icon/react'
 import Button from '@pluralsight/ps-design-system-button/react'
+import Avatar from '../Avatar';
 import usableIcons from '../../utils/usableIcons';
 
 const electron = require('electron');
@@ -179,7 +179,7 @@ const MemberLine = ( props ) => {
 			<div className="data__line">
 				<div className="data__line--inner data__line--picture">
 					<div className="data__line--value">
-						{ props.picture ? <div className="data__line--picture-container" style={{backgroundImage:`url('file:${props.picture}')`}}></div> : <img src={dummyImage} alt={props.name}/> }
+						{ props.picture ? <div className="data__line--picture-container" style={{backgroundImage:`url('file:${props.picture}')`}}></div> : <div className="data__line--picture-container no-picture"><Avatar name={ props.name } /></div> }
 					</div>
 				</div>
 				<div className="data__line--inner data__line--name">
@@ -200,7 +200,6 @@ const MemberLine = ( props ) => {
 			</div>
 			<div className="data__line--button">
 				<Button icon={<Icon id={Icon.ids.trash} />} title="DeleteMember" onClick={deleteMember}/>
-				{/* <button className="data__line--button-delete" ><FontAwesomeIcon icon={faTrash} /></button> */}
 			</div>
 		</div>
 	);

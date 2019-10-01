@@ -1,0 +1,35 @@
+@import '../../utils/variables';
+
+.overview {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	position: absolute;
+	bottom: $spacer__xl;
+	left: 0;
+
+	&__member-icon {
+		margin: 0 $spacer__s;
+		border-radius: 50%;
+		background: $color__light-gray;
+		transition: opacity 200ms ease-in-out;
+
+		&.faded {
+			opacity: .5;
+		}
+	}
+
+	&__member-picture {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: $size__m;
+		height: $size__m;
+		text-align: center;
+		font-size: $font-size__l;
+		font-weight: 500;
+		border-radius: 50%;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+}

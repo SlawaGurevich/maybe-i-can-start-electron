@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import Overview from '../../Overview';
+import Avatar from '../../Avatar';
 
 import './Spinner.scss';
 
 import styled, { keyframes } from 'styled-components';
+import { fadeInUp } from 'react-animations';
 import { fadeIn } from 'react-animations';
 
+const FadeInUp = styled.div`animation: 1s ${keyframes `${fadeInUp}`}`;
 const FadeIn = styled.div`animation: 1s ${keyframes `${fadeIn}`}`;
 
 export class Spinner extends Component {
@@ -150,7 +154,9 @@ export class Spinner extends Component {
 						  </div></FadeIn>
 		} else {
 			spinnerView = <div>
-		 		<div id="spinner-image" className={ this.state.nextId !== null && !this.state.spinning ? "visible" : "hidden" } style={{ backgroundImage: 'url("file://' + (this.state.data[this.state.nextId].picture ? this.state.data[this.state.nextId].picture : process.env.PUBLIC_URL + '/Question.png') + '")' }}></div>
+		 		<div id="spinner-image" className={ this.state.nextId !== null && !this.state.spinning ? "visible" : "hidden" } style={ this.state.data[this.state.nextId].picture ? { backgroundImage: `url("file://${this.state.data[this.state.nextId].picture}")` } : {} }>
+		 			{ !this.state.data[this.state.nextId].picture ? <Avatar name={ this.state.data[this.state.nextId].name } /> : '' }
+		 		</div>
 				<div id="spinner"
 					 className="spinner">
 						<div id="name-line-first" data-id={ this.state.data[Number.isInteger(this.state.currentId) ? this.state.currentId : 0].id } className="name-line current">{ this.state.data[Number.isInteger(this.state.currentId) ? this.state.currentId : 0].name }</div>
@@ -160,7 +166,8 @@ export class Spinner extends Component {
 		}
 		return (
 			<div>
-				{ spinnerView }
+				<FadeInUp>{ spinnerView }</FadeInUp>
+				<FadeIn><Overview data={ this.state.data } /></FadeIn>
 			</div>
 		)
 	}

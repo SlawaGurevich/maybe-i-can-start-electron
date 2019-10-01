@@ -3,6 +3,7 @@
 $spinner--height: 60px;
 
 .spinner {
+	position: relative;
 	height: $spinner--height;
 	width: 300px;
 	font-size: $font-size__l;
@@ -41,9 +42,16 @@ $spinner--height: 60px;
 
 #last-spinner-image,
 #spinner-image {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	width: 150px;
 	height: 150px;
-	border: 6px solid white;
+	border: 6px solid $color__secondary;
+	color: $color__secondary;
+	font-size: $font-size__xxl;
+	font-weight: 600;
+	text-align: center;
 	box-shadow: 0 0 10px 10px rgba(0, 0, 0, .2);
 	background-color: #1a1a1a;
 	box-sizing: border-box;
@@ -62,7 +70,7 @@ $spinner--height: 60px;
 	visibility: hidden;
 	transition: 200ms all ease-in-out;
 	transform: translateX(50%);
-	
+
 	&.visible {
 		visibility: visible;
 		opacity: 1;
