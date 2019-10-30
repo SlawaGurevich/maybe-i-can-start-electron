@@ -5,6 +5,8 @@
 	align-items: center;
 	justify-content: center;
 	flex-grow: 1;
+	width: 100%;
+	height: 100%;
   	background-size: cover;
 }
 
@@ -25,6 +27,23 @@
 		height: 100%;
 		width: auto;
 	}
+}
+
+#spin-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 50px;
+	margin-top: $spacer__l;
+	color: $color__secondary;
+	background: $color__main;
+	border-radius: $border__radius--l;
+}
+
+.selector-container {
+	display: flex;
+	flex-direction: column;
 }
 
 .button--options {

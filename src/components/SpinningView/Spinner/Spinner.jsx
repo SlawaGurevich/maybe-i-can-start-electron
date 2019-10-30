@@ -61,7 +61,6 @@ export class Spinner extends Component {
 					"currentId": 0,
 					"nextId": 1,
 				});
-				console.log("setting id", this.state.currentId, this.state.nextId);
 			}
 
 			if( this.state.data.length < 2 ) {

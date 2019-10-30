@@ -4,13 +4,9 @@ import { Link } from 'react-router-dom';
 import SpinningView from '../SpinningView';
 import { SelectorView, EmptySelectorView } from '../SelectorView';
 import { D_getAllOptions, D_getAllMembers } from '../../utils/dbService';
-import Icon from '@pluralsight/ps-design-system-icon/react'
-import Button from '@pluralsight/ps-design-system-button/react'
-
+import { Button } from 'antd';
 
 import './MainView.scss';
-
-// import PeopleSelector from '../PeopleSelector';
 
 export class MainView extends Component {
 	constructor() {
@@ -22,7 +18,7 @@ export class MainView extends Component {
 	}
 
 	switchToSpinView(e) {
-		if( e.keyCode === 32 ) {
+		if( (e.keyCode === 32) || e === "clicked" ) {
 			let dataTemp = []
 
 			for (let checkbox of document.querySelectorAll(".checkbox-element.checked")) {
@@ -35,7 +31,7 @@ export class MainView extends Component {
 		}
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		document.addEventListener("keydown", this.switchToSpinView, false);
 		this.getOptions();
 		this.getMembers();
@@ -54,18 +50,22 @@ export class MainView extends Component {
 	render() {
 		return (
 			<>
-			<div id="main-view">
-				<div id="logo-container">
-					<img src={ process.env.PUBLIC_URL + "/micsLogo.svg"} alt="Maybe I can Start"/>
+				<div id="main-view">
+					<div id="logo-container">
+						<img src={ process.env.PUBLIC_URL + "/micsLogo.svg"} alt="Maybe I can Start"/>
+					</div>
+					{ this.state.view === "selection" ? (this.state.data.length ? <div className="selector-container"><SelectorView data={this.state.data} /><SpinButton switch={ this.switchToSpinView } /></div> : <EmptySelectorView /> ) : <SpinningView data={ this.state.selected }/> }
 				</div>
-				{ this.state.view === "selection" ? (this.state.data.length ? <SelectorView data={this.state.data} /> : <EmptySelectorView /> ) : <SpinningView data={ this.state.selected }/> }
-			</div>
-			<Link to="/options" className="button--options">
-				<Button class="button--op" icon={<Icon id={Icon.ids.gear} />} title="DeleteMember" type="submit"/>
-			</Link>
+				<Link to="/options" className="button--options">
+					<Button className="button--op" type="primary" icon="setting" size="large" theme="filled" />
+				</Link>
 			</>
 		)
 	}
 }
 
-export default MainView
+export const SpinButton = (props) => {
+	return <div id="spin-button">Press [space] to start.</div>;
+}
+
+export default MainView;

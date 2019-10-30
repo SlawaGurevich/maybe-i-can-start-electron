@@ -1,20 +1,18 @@
 @import '../../utils/variables';
 
-$tabs--width: 144px;
-
 .secondary-screen {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
+	height: 100%;
 	max-width: 900px;
-	margin: 100px auto;
 	padding: $spacer__xl;
 	background: $color__secondary;
 	border-radius: $border__radius--l;
 }
 
 .button--close {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	position: absolute;
 	top: $spacer__xl;
 	right: $spacer__xl;
@@ -25,17 +23,32 @@ $tabs--width: 144px;
 }
 
 .react-tabs {
+	&__tab-list {
+		display: flex;
+		width: 100%;
+		border-bottom: 1px solid $color__body;
+		margin-bottom: $spacer__xl;
+		padding: 0;
+		padding-bottom: $spacer__l;
+		list-style: none none inside;
+	}
+
 	&__tab {
-		width: $tabs--width;
-		padding: $spacer__m 0;
+		padding: $spacer__s $spacer__l;
 		margin-right: $spacer__l;
 		font-size: $font-size__l;
-		border-bottom: 1px solid $color__light-gray;
+		border-radius: $border__radius--rounded;
+		text-align: center;
+		font-size: $font-size__m;
+		font-weight: 500;
+		text-transform: uppercase;
 		cursor: pointer;
+		transition: all 200ms ease-in-out;
+	}
 
-		&:first-child {
-			border-top: 1px solid $color__light-gray;
-		}
+	&__tab--selected {
+		color: $color__secondary;
+		background-color: $color__main;
 	}
 
 	&__tab-panel {
@@ -48,16 +61,5 @@ $tabs--width: 144px;
 		&--selected {
 			display: flex;
 		}
-	}
-
-	&__tab--selected {
-		color: $color__main;
-	}
-
-	&__tab-list {
-		width: 2 * $size__l;
-		margin: 0;
-		padding: 0;
-		list-style: none none inside;
 	}
 }

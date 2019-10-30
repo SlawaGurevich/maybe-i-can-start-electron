@@ -13,6 +13,9 @@ function createWindow() {
       width: 1280,
       height: 720,
       show: false,
+      frame: false,
+      titleBarStyle: 'hidden',
+      movable: true,
       webPreferences: {
         nodeIntegration: true,
         webSecurity: false,

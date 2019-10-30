@@ -1,11 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import fs from 'fs-extra';
 import path from 'path';
 
-import Icon from '@pluralsight/ps-design-system-icon/react'
-import Button from '@pluralsight/ps-design-system-button/react'
+import { Button, Select } from 'antd';
 import Avatar from '../Avatar';
 import usableIcons from '../../utils/usableIcons';
 
@@ -21,6 +20,8 @@ const INITIAL_STATE = {
 	oldImagePath: '',
 	newImagePath: '',
 }
+
+const { Option } = Select;
 
 class MembersAddForm extends Component {
 	constructor(props) {
@@ -81,6 +82,10 @@ class MembersAddForm extends Component {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 
+	onSelect = value => {
+		this.setState({role: value});
+	};
+
 	render() {
 		const {
 			name,
@@ -96,17 +101,11 @@ class MembersAddForm extends Component {
 			<form className="data__line--wrapper" onSubmit={this.onSubmit}>
 				<div className="data__line">
 					<div onClick={this.selectImage} className="data__line--inner data__line--picture">
-						<div className="data__line--label">
-							Picture
-						</div>
 						<div className="data__line--value data__line--select-image">
-							{ this.state.oldImagePath ? <div className="data__line--picture-container" style={{backgroundImage: `url('file:${this.state.oldImagePath}')`}} ></div> : <div className="data__line--icon"><FontAwesomeIcon icon={faPlus} /></div> }
+							{ this.state.oldImagePath ? <div className="data__line--picture-container" style={{backgroundImage: `url('file:${this.state.oldImagePath}')`}} ></div> : <div className="data__line--icon"><FontAwesomeIcon icon={faCamera} /></div> }
 						</div>
 					</div>
 					<div className="data__line--inner data__line--name">
-						<div className="data__line--label">
-							Name
-						</div>
 						<div className="data__line--value">
 							<input
 								name="name"
@@ -118,27 +117,19 @@ class MembersAddForm extends Component {
 						</div>
 					</div>
 					<div className="data__line--inner data__line--role">
-						<div className="data__line--label">
-							Role
-						</div>
 						<div className="data__line--value">
-							<select
-								name="role"
-								value={role}
-								onChange={this.onChange}
-								type="role"
-								placeholder="Role"
-							>
-								<option value="norole" defaultValue>Please select...</option>
+							<Select placeholder="Select role..."
+									onSelect={this.onSelect}
+									style={{ width: 200 }}>
 								{ this.props.roles.map( (role, key) => (
-									<option key={key} value={role._id}>{role.name}</option>
+									<Option key={key} value={role._id}>{role.name}</Option>
 								) ) }
-							</select>
+							</Select>
 						</div>
 					</div>
 				</div>
 				<div className="data__line--button">
-					<Button icon={<Icon id={Icon.ids.plus} />} disabled={isInvalid} title="DeleteMember" type="submit"/>
+					<Button icon="plus" type="primary" size="large" disabled={isInvalid} theme="filled" htmlType="submit" />
 				</div>
 			</form>
 		);
@@ -199,7 +190,7 @@ const MemberLine = ( props ) => {
 				</div>
 			</div>
 			<div className="data__line--button">
-				<Button icon={<Icon id={Icon.ids.trash} />} title="DeleteMember" onClick={deleteMember}/>
+				<Button type="danger" icon="delete" size="large" theme="filled" onClick={deleteMember} />
 			</div>
 		</div>
 	);
