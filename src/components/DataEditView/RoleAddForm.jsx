@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Icon from '@pluralsight/ps-design-system-icon/react'
-import Button from '@pluralsight/ps-design-system-button/react'
+import { Button } from 'antd';
 
 import usableIcons from '../../utils/usableIcons';
 
@@ -42,7 +41,7 @@ const RoleLine = (props) => {
 				</div>
 			</div>
 			<div className="data__line--button">
-				<Button icon={<Icon id={Icon.ids.trash} />} title="DeleteRole" onClick={deleteRole}/>
+				<Button type="danger" icon="delete" size="large" theme="filled" onClick={deleteRole} />
 			</div>
 		</div>
 	)
@@ -94,9 +93,6 @@ class RoleAddForm extends Component {
 			<form className="data__line--wrapper" onSubmit={this.onSubmit}>
 				<div className="data__line">
 					<div className="data__line--inner">
-						<div className="data__line--label">
-							Icon
-						</div>
 						<div className="data__line--value">
 							<select
 								hidden
@@ -124,9 +120,6 @@ class RoleAddForm extends Component {
 						</div>
 					</div>
 					<div className="data__line--inner data__line--name">
-						<div className="data__line--label">
-							Name
-						</div>
 						<div className="data__line--value">
 							<input
 								name="name"
@@ -138,7 +131,7 @@ class RoleAddForm extends Component {
 						</div>
 					</div>
 					<div className="data__line--button">
-						<Button icon={<Icon id={Icon.ids.plus} />} disabled={isInvalid} title="DeleteRole" type="submit"/>
+						<Button icon="plus" type="primary" size="large" disabled={isInvalid} theme="filled" htmlType="submit" />
 					</div>
 				</div>
 			</form>

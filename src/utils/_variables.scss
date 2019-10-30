@@ -24,7 +24,10 @@ $font-size__l: 1.2rem;
 $font-size__xl: 2rem;
 $font-size__xxl: 3rem;
 
-$border__radius--l: 10px;
-$border__radius--m: 4px;
+$border__radius--l: 2.5 * $grid__unit;
+$border__radius--m: $grid__unit;
+$border__radius--rounded: 6 * $grid__unit;
 
 $shadow__default: 0 0 10px 10px rgba(0, 0, 0, .3);
+
+$transition--default: all 200ms ease-in-out;

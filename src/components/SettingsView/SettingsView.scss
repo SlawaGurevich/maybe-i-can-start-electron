@@ -1,0 +1,57 @@
+@import '../../utils/variables';
+
+$settings-list__label--width: 50 * $grid__unit; // 200px
+$settings-list__image-preview--min-height: 75 * $grid__unit; // 300px
+
+
+.options__settings-list {
+	&--setting {
+		display: flex;
+		width: 100%;
+		margin-bottom: $spacer__l;
+
+		&-label {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
+			width: $settings-list__label--width;
+			min-width: $settings-list__label--width;
+		}
+
+		&-option {
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+		}
+	}
+
+	&--image-buttons {
+		position: absolute;
+		right: $spacer__m;
+		top: $spacer__m;
+
+		button {
+			margin-left: $spacer__m;
+		}
+	}
+
+	&--background-preview {
+		position: relative;
+		min-height: $settings-list__image-preview--min-height;
+		border-radius: $border__radius--m;
+		transition: $transition--default;
+
+		.preview-image {
+			max-width: 100%;
+			height: auto;
+			border-radius: $border__radius--m;
+		}
+	}
+
+	&--background-preview-bg {
+		position: relative;
+		min-height: $settings-list__image-preview--min-height;
+		border-radius: $border__radius--m;
+	}
+}

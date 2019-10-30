@@ -48,5 +48,17 @@ const D_getAllOptions = async () => {
     return result;
 }
 
+const D_setOption = async (option, value) => {
+    await Databases.options.update({option: option}, {option: option, value: value}, {upsert: true});
+}
+
+const D_deleteOption = async (option) => {
+    await Databases.options.remove({option: option});
+}
+
+const D_getOption = async (option) => {
+    return Databases.options.findOne({option: option});
+}
+
 export default Databases;
-export { D_getAllOptions, D_getAllMembers, D_getAllRoles, D_addMember, D_deleteMember, D_addRole, D_deleteRole, D_getRole };
+export { D_getAllOptions, D_getAllMembers, D_getAllRoles, D_addMember, D_deleteMember, D_addRole, D_deleteRole, D_getRole, D_setOption, D_deleteOption, D_getOption };

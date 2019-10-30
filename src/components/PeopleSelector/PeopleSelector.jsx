@@ -25,7 +25,6 @@ export class PeopleSelector extends Component {
 						)
 					)}
 				</div>
-				<div id="spin-button">Press [space] to start.</div>
 			</div>
 		)
 	}

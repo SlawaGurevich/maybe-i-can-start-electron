@@ -1,5 +1,4 @@
 @import '../../utils/variables';
-
 .data__line {
 	display: flex;
 	flex-grow: 1;
@@ -114,8 +113,6 @@
 		cursor: pointer;
 
 		.data__line--icon {
-			margin-right: $spacer__l;
-
 			&:last-child {
 				margin-right: 0;
 			}

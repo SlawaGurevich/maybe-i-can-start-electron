@@ -1,22 +1,19 @@
 import React from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
-import * as ROUTES from '../constants/routes';
 
-import MainView from './MainView';
-import OptionsView from './OptionsView';
+import AppWrapper from './AppWrapper';
 
-import 'bootstrap/scss/bootstrap.scss';
+import { createStore } from '../context/OptionContext';
+
+import 'antd/dist/antd.css';
+// import 'bootstrap/scss/bootstrap.scss';
 import './App.scss';
 
 function App() {
   return (
     <div id="App">
-      <Router>
-        <Route exact path={ROUTES.HOME} component={MainView} />
-        <Route path={ROUTES.OPTIONS} component={OptionsView} />
-      </Router>
+		<AppWrapper />
     </div>
   )
 }
 
-export default App;
+export default createStore(App);
