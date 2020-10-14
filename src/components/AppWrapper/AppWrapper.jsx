@@ -32,11 +32,14 @@ let backgroundColor, backgroundImage = undefined;
 const AppWrapper = (props) => {
 	const getBgFromDB = async function () {
 		try {
-			backgroundColor = await D_getOption("optionBgColor");
 			backgroundImage = await D_getOption("optionBgImage");
 
-			props.store.set("optionBgImage", backgroundImage ? backgroundImage.value : undefined );
-			props.store.set("optionBgColor", backgroundColor ? backgroundColor.value : "gray");
+			if ( backgroundImage ) {
+				props.store.set("optionBgImage", backgroundImage ? backgroundImage.value : undefined );
+			} else {
+				backgroundColor = await D_getOption("optionBgColor");
+				props.store.set("optionBgColor", backgroundColor ? backgroundColor.value : "gray");
+			}
 		} catch (err) {
 			console.log("Couldn't get bgColor from the database.", err)
 		};
@@ -49,7 +52,7 @@ const AppWrapper = (props) => {
 
 	return (
 		<>
-			<div id="app-wrapper" style={ props.store.get('optionBgImage') ? { "background": `url("file://${props.store.get('optionBgImage')}")` } : { "backgroundColor": props.store.get("optionBgColor") }}>
+			<div id="app-wrapper" style={ props.store.get('optionBgImage') ? { "backgroundImage": `url("file://${props.store.get('optionBgImage')}")` } : { "backgroundColor": props.store.get("optionBgColor") }}>
 			{ props.store.get("optionBgImage") || props.store.get("optionBgColor") ?
 				<Router>
 					<Route exact path={ROUTES.HOME} component={MainView} />

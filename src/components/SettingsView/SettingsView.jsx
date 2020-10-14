@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import fs from 'fs-extra';
 import path from 'path';
 
-import { SliderPicker } from 'react-color';
-import { Collapse, Button } from 'antd';
 import { D_setOption, D_getOption, D_deleteOption } from '../../utils/dbService';
 import { withStore } from '../../context/OptionContext';
+
+import { Collapse, Button } from 'antd';
+import { SliderPicker } from 'react-color';
 
 import './SettingsView.scss';
 

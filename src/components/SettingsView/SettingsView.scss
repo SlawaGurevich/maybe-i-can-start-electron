@@ -23,6 +23,7 @@ $settings-list__image-preview--min-height: 75 * $grid__unit; // 300px
 			display: flex;
 			flex-direction: column;
 			flex-grow: 1;
+			transition: $transition--default;
 		}
 	}
 

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 
+import { withStore } from '../../context/OptionContext';
+
 import SelectorLine from './SelectorLine';
 
 import './PeopleSelector.scss'
 
 export class PeopleSelector extends Component {
-	constructor(props) {
-		super(props)
-		this.state.data = props.data;
-	}
-
 	state = {
 		phase: 0,
 		data: [],
@@ -19,7 +16,7 @@ export class PeopleSelector extends Component {
 		return (
 			<div>
 				<div id="people-selector">
-					{this.state.data.map(
+					{this.props.store.get("members").map(
 						(member, key) => (
 							<SelectorLine key={member._id} uid={key} picture={member.picture} name={member.name} role={member.role} />
 						)
@@ -30,4 +27,4 @@ export class PeopleSelector extends Component {
 	}
 }
 
-export default PeopleSelector;
+export default withStore(PeopleSelector);

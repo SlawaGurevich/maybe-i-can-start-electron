@@ -8,11 +8,16 @@ $title-bar__height: 5 * $grid__unit;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
 	padding: ($title-bar__height + $grid__unit * 25) 0;
 	transition: $transition--default;
 }
 
 #title-bar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: fixed;
 	top: 0;
 	left: 0;
